@@ -54,7 +54,7 @@ def sign_up():
             new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1, method='pbkdf2')) # NOTE -> (werkzeug) The sha256 method is no longer a viable option, "scrypt" or "pbkdf2" look to be the only two.
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash("Account created!", category="success")
 
             return redirect(url_for("views.home"))
